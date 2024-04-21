@@ -2,6 +2,7 @@ const version = "1.0";
 
 let currentTabId;
 let server = "";
+let token = "";
 
 const requests = new Map();
 
@@ -14,6 +15,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     return;
   }
   server = request.server;
+  token = request.token;
   chrome.debugger.attach(
     {
       tabId: currentTabId,
@@ -24,9 +26,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   chrome.debugger.onDetach.addListener(debuggerDetachHandler);
   sendResponse({ status: 0 });
 });
+
 function debuggerDetachHandler() {
   requests.clear();
 }
+
 function onAttach(tabId) {
   chrome.debugger.sendCommand(
     {
@@ -38,6 +42,7 @@ function onAttach(tabId) {
 
   chrome.debugger.onEvent.addListener(allEventHandler);
 }
+
 // https://chromedevtools.github.io/devtools-protocol/tot/Network
 function allEventHandler(debuggeeId, message, params) {
   if (currentTabId != debuggeeId.tabId) {
@@ -105,6 +110,7 @@ function allEventHandler(debuggeeId, message, params) {
     );
   }
 }
+
 function sendData(data) {
   if (server.length === 0) {
     return;
@@ -114,11 +120,16 @@ function sendData(data) {
     method: "post",
     headers: {
       "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
     },
     body: JSON.stringify(Object.fromEntries(data)),
   });
 }
 
 function filter(url) {
-  return url.startsWith("https://api.konaos.com/") && !url.endsWith("css") && !url.endsWith("js");
+  return (
+    url.startsWith("https://api.konaos.com/") &&
+    !url.endsWith("css") &&
+    !url.endsWith("js")
+  );
 }

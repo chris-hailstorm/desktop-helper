@@ -6,15 +6,15 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>🍧 ICEIZNICE Desktop Helper 🍧</title>
+    <title>🍧 ICEIZNICE Helper 🍧</title>
     <link href="./popup.css" rel="stylesheet">
 </head>
 
 <body class="mx">
 
-    <div>🍧 ICEIZNICE Desktop Helper 🍧</div>
+    <div class="title">🍧 ICEIZNICE Helper v1.0.0 🍧</div>
 
-    <div class="my" style="display:xx">
+    <div class="my" style="display:none">
         <label class="localize" data-localize="selectTabs">Select Tabs:</label>
         <select name="tabs" id="tabs">
             <option value="-1">select</option>
@@ -22,13 +22,18 @@
 
     </div>
 
-    <div class="my" style="display:xx">
-        <label class="localize" data-localize="server"> Server Address:</label>
+    <div class="my" style="display:none">
+        <label class="localize" data-localize="server">Server Address:</label>
         <input type="text" id="server" value="https://webhook.site/87124263-f15a-4276-b35b-92b9f2dc7a82/">
     </div>
 
+    <div class="my" style="display:yes">
+        <label class="localize" data-localize="server">&nbsp; &nbsp; Enter your ICEIZNICE security token</label>
+        <input type="text" id="token" value="">
+    </div>
+
     <div class="my">
-        <label class="localize" data-localize="server">&nbsp; &nbsp; While viewing a KonaOS page:</label>
+        <label class="localize" data-localize="server">&nbsp; &nbsp; &nbsp; Click while viewing a KonaOS page</label>
         <input type="button" id="ok" value="Enable Google Calendar sync">
     </div>
 

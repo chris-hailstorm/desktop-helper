@@ -1,6 +1,7 @@
 const tabs = await chrome.tabs.query({});
 const tabsSelectDom = document.getElementById("tabs");
 const serverDom = document.getElementById("server");
+const tokenDom = document.getElementById("token");
 const okDom = document.getElementById("ok");
 
 const textToMatch = "KONA ICE";
@@ -37,9 +38,14 @@ if (matchViaText) {
 }
 
 const localServer = localStorage.getItem("server");
+const localToken = localStorage.getItem("token");
 
 if (localServer) {
   serverDom.value = localServer;
+}
+
+if (localToken) {
+  tokenDom.value = localToken;
 }
 
 serverDom.addEventListener("change", (e) => {
@@ -48,13 +54,22 @@ serverDom.addEventListener("change", (e) => {
   localStorage.setItem("server", server);
 });
 
+tokenDom.addEventListener("change", (e) => {
+  const tokenDom = document.getElementById("token");
+  const token = tokenDom.value;
+  localStorage.setItem("token", token);
+});
+
 tabsSelectDom.addEventListener("change", (e) => {
   const serverDom = document.getElementById("server");
+  const tokenDom = document.getElementById("token");
   const server = serverDom.value;
+  const token = tokenDom.value;
   (async () => {
     const response = await chrome.runtime.sendMessage({
       id: e.target.value,
       server: server,
+      token: token,
     });
   })();
 });

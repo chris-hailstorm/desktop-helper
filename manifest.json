@@ -1,5 +1,5 @@
 {
-  "name": "ICEIZNICE Desktop Helper",
+  "name": "ICEIZNICE Helper",
   "version": "1.0.0",
   "manifest_version": 3,
   "description": "Enable ICEIZNICE to update Google Calendar from KonaOS event calendar.",

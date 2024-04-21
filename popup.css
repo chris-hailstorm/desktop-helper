@@ -1,18 +1,41 @@
-body{
+body {
     min-height: 100px;
     min-width: 200px;
 }
 
-.m{
+.m {
     margin: 10px;
 }
 
-.mx{
+.mx {
     margin-left: 10px;
     margin-right: 10px;
 }
 
-.my{
+.my {
     margin-bottom: 10px;
     margin-top: 10px;
+}
+
+.title {
+    text-align: center;
+    font-weight: bold;
+}
+
+label {
+    font-size: 0.9em;
+    text-align: center;
+}
+
+input[type="button"] {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+input[type="text"] {
+    text-align: center;
+    width: 200px;
+    height: 1.2em;
 }
